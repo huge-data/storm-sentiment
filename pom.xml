@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>zx.soft</groupId>
+	<artifactId>storm-sentiment</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+	<name>Storm Sentiment [Build POM]</name>
+	<description>Sentiment Analysis based on Storm.</description>
+
+	<modules>
+		<module>storm-parent</module>
+		<module>storm-dao</module>
+		<module>storm-redis</module>
+		<module>storm-web</module>
+		<module>storm-analysis</module>
+		<module>storm-core</module>
+	</modules>
+
+	<build>
+		<plugins>
+			<!-- 源码打包插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- JDK编译版本 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<inceptionYear>2014</inceptionYear>
+
+	<licenses>
+		<license>
+			<name>Apache 2</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>all</distribution>
+			<comments>Copyright 2014 (c) Gang Wang - All Right Reserved</comments>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>wgybzb</id>
+			<name>Gang Wang</name>
+			<email>wanggang@zxisl.com</email>
+			<url>http://github.com/wgybzbrobot</url>
+			<roles>
+				<role>ReleaseManager</role>
+				<role>Designer</role>
+				<role>Developer</role>
+			</roles>
+			<timezone>UTC-8</timezone>
+		</developer>
+		<developer>
+			<id>frank</id>
+			<name>Huanhuan Fu</name>
+		</developer>
+		<developer>
+			<id>bingbaby</id>
+			<name>Jianbing Han</name>
+		</developer>
+	</developers>
+
+</project>
