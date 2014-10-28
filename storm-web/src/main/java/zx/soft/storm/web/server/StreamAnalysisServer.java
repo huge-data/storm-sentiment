@@ -9,7 +9,7 @@ import zx.soft.storm.web.application.StreamAnslysisApplication;
 import zx.soft.storm.web.utils.ConfigUtil;
 
 /**
- * 流式数据服务
+ * 流式数据服务，统计词频
  * 
  * @author wanggang
  * 示例：
