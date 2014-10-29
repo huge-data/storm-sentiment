@@ -12,6 +12,10 @@
 	<artifactId>storm-web</artifactId>
 	<name>Storm Web</name>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>zx.soft</groupId>

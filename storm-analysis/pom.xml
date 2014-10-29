@@ -11,8 +11,68 @@
 
 	<artifactId>storm-analysis</artifactId>
 	<name>Storm Analysis</name>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.storm</groupId>
+			<artifactId>storm-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>org.restlet.jse</groupId>
+			<artifactId>org.restlet</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.restlet.jse</groupId>
+			<artifactId>org.restlet.ext.simple</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.restlet.jse</groupId>
+			<artifactId>org.restlet.ext.jackson</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20140107</version>
+		</dependency>
+		<!-- 本地包 -->
+		<dependency>
+			<groupId>zx.soft</groupId>
+			<artifactId>negative-sentiment</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>cc.pp.study</groupId>
+			<artifactId>analyzer-ik</artifactId>
+			<version>1.0.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.hadoop</groupId>
+					<artifactId>hadoop-common</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.restlet.jee</groupId>
+					<artifactId>org.restlet</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.restlet.jee</groupId>
+					<artifactId>org.restlet.ext.servlet</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
