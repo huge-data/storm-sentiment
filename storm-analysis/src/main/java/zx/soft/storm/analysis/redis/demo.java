@@ -1,4 +1,4 @@
-package zx.soft.storm_redis_demo.db;
+package zx.soft.storm.analysis.redis;
 
 public class demo {
 

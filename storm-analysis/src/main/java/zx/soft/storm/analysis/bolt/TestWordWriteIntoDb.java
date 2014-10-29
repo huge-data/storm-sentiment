@@ -1,10 +1,10 @@
-package zx.soft.storm_redis_demo.bolt;
+package zx.soft.storm.analysis.bolt;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import zx.soft.storm_redis_demo.db.WordCount;
-import zx.soft.storm_redis_demo.db.WordCountDao;
+import zx.soft.storm.analysis.redis.WordCount;
+import zx.soft.storm.analysis.redis.WordCountDao;
 import backtype.storm.task.OutputCollector;
 import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.OutputFieldsDeclarer;

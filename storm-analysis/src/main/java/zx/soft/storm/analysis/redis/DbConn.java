@@ -1,4 +1,4 @@
-package zx.soft.storm_redis_demo.db;
+package zx.soft.storm.analysis.redis;
 
 /*每次连接数据库都要注册驱动，并且注册驱动只要一次即可
  * 用一次注册一次相当麻烦，写入一个类自动注册驱动

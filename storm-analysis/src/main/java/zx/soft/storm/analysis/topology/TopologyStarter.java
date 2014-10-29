@@ -1,8 +1,8 @@
-package zx.soft.storm_redis_demo;
+package zx.soft.storm.analysis.topology;
 
-import zx.soft.storm_redis_demo.bolt.TestWordProcessed;
-import zx.soft.storm_redis_demo.bolt.TestWordWriteIntoDb;
-import zx.soft.storm_redis_demo.spout.TestSpout;
+import zx.soft.storm.analysis.bolt.TestWordProcessed;
+import zx.soft.storm.analysis.bolt.TestWordWriteIntoDb;
+import zx.soft.storm.analysis.spout.TestSpout;
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.StormSubmitter;

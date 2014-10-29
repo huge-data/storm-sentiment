@@ -1,4 +1,4 @@
-package zx.soft.storm_redis_demo.spout;
+package zx.soft.storm.analysis.spout;
 
 import java.util.Map;
 

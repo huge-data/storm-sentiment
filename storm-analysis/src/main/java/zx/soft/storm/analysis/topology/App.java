@@ -1,4 +1,4 @@
-package zx.soft.storm_redis_demo;
+package zx.soft.storm.analysis.topology;
 
 /**
  * Hello world!

@@ -1,4 +1,4 @@
-package zx.soft.storm_redis_demo.bolt;
+package zx.soft.storm.analysis.bolt;
 
 import java.util.Map;
 
