@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zx.soft.storm.dao.wordcount.WordCountDao">
+
+	<!-- 插入词频数据 -->
+	<insert id="insertWordCount" parameterType="InsertWordCount"
+		useGeneratedKeys="true" keyProperty="id" flushCache="true"
+		statementType="PREPARED">
+		INSERT INTO ${tablename} (`word`,`count`,`lasttime`) VALUES
+		(#{word},#{count},UNIX_TIMESTAMP());
+	</insert>
+	
+	<!--  -->
+
+</mapper>
