@@ -1,0 +1,37 @@
+<configuration>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender"> 
+		<file>logs/system.log</file> <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> 
+		<fileNamePattern>logs/system.%d{yyyy-MM-dd}.zip</fileNamePattern> <maxHistory>15</maxHistory> 
+		</rollingPolicy> <append>true</append> <encoder> <pattern>%date %level [%thread] 
+		%logger{10} [%file:%line] %msg%n </pattern> </encoder> </appender> -->
+
+	<appender name="accessLogAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/storm-dao.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/storm-dao.%d{yyyy-MM-dd}.zip</fileNamePattern>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<append>true</append>
+		<encoder>
+			<pattern>%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="org.eclipse.jetty.server.RequestLog" level="info"
+		addtivity="false">
+		<appender-ref ref="accessLogAppender" />
+	</logger>
+
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>
