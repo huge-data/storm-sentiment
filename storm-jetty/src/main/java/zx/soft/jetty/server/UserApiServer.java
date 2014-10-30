@@ -14,6 +14,12 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
+/**
+ * 用户数据接口服务
+ * 
+ * @author wanggang
+ *
+ */
 public class UserApiServer {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserApiServer.class);
@@ -22,10 +28,13 @@ public class UserApiServer {
 	private static final String CONTEXT_PATH = "/";
 	private static final String MAPPING_URL = "/*";
 
+	/**
+	 * 主函数
+	 */
 	public static void main(String[] args) throws Exception {
-		Properties ps = new Properties();
-		ps.load(UserApiServer.class.getClassLoader().getResourceAsStream("conf.properties"));
-		new UserApiServer().startJetty(Integer.valueOf(ps.getProperty("api.port", String.valueOf(DEFAULT_PORT))));
+		Properties props = new Properties();
+		props.load(UserApiServer.class.getClassLoader().getResourceAsStream("conf.properties"));
+		new UserApiServer().startJetty(Integer.valueOf(props.getProperty("api.port", String.valueOf(DEFAULT_PORT))));
 	}
 
 	private static WebApplicationContext getContext() {

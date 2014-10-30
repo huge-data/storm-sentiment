@@ -11,9 +11,9 @@
 		</encoder>
 	</appender>
 
-	<logger name="cc.pp" level="debug" />
+	<logger name="zx.soft" level="debug" />
 
-	<root level="info">
+	<root level="INFO">
 		<appender-ref ref="STDOUT" />
 	</root>
 	

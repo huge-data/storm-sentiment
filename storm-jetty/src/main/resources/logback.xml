@@ -12,9 +12,9 @@
 
 	<appender name="FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>logs/system.log</file>
+		<file>logs/storm-jetty.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>logs/system.%d{yyyy-MM-dd}.zip</fileNamePattern>
+			<fileNamePattern>logs/storm-jetty.%d{yyyy-MM-dd}.zip</fileNamePattern>
 			<maxHistory>15</maxHistory>
 		</rollingPolicy>
 		<append>true</append>

@@ -21,7 +21,7 @@ import zx.soft.jetty.service.UserService;
  */
 @Controller
 @RequestMapping("/users/{uid}")
-public class UserStatisticsController {
+public class UserController {
 
 	@Inject
 	private UserService userService;
