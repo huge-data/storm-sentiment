@@ -12,8 +12,8 @@
 		<fileSet>
 			<directory>src/main/resources</directory>
 			<includes>
-				<include>conf.properties</include>
-				<include>jdbc.properties</include>
+				<include>web_server.properties</include>
+				<include>data_db.properties</include>
 				<include>logback.xml</include>
 			</includes>
 			<outputDirectory>/conf</outputDirectory>

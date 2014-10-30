@@ -155,7 +155,7 @@
 						</goals>
 						<configuration>
 							<autocommit>true</autocommit>
-							<sqlCommand>DROP DATABASE IF EXISTS `crm_dev`</sqlCommand>
+							<sqlCommand>DROP DATABASE IF EXISTS `user_dev`</sqlCommand>
 							<!-- ignore error when database is not avaiable -->
 							<onError>continue</onError>
 						</configuration>
@@ -170,7 +170,7 @@
 						<configuration>
 							<autocommit>true</autocommit>
 							<srcFiles>
-								<srcFile>src/test/sql/crm.sql</srcFile>
+								<srcFile>src/test/sql/user.sql</srcFile>
 							</srcFiles>
 						</configuration>
 					</execution>
@@ -183,7 +183,7 @@
 						</goals>
 						<configuration>
 							<autocommit>true</autocommit>
-							<sqlCommand>DROP DATABASE IF EXISTS `crm_dev`</sqlCommand>
+							<sqlCommand>DROP DATABASE IF EXISTS `user_dev`</sqlCommand>
 						</configuration>
 					</execution>
 				</executions>
@@ -194,8 +194,8 @@
 				<version>2.4</version>
 				<configuration>
 					<excludes>
-						<exclude>conf.properties</exclude>
-						<exclude>jdbc.properties</exclude>
+						<exclude>web_server.properties</exclude>
+						<exclude>data_db.properties</exclude>
 						<exclude>logback.xml</exclude>
 					</excludes>
 				</configuration>

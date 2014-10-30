@@ -11,12 +11,12 @@
         http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd"
 	default-lazy-init="true">
 
-	<context:component-scan base-package="cc.pp.crm.controller" />
-	<context:component-scan base-package="cc.pp.crm.service" />
+	<context:component-scan base-package="zx.soft.jetty.controller" />
+	<context:component-scan base-package="zx.soft.jetty.service" />
 
 	<!-- mapper -->
 	<bean id="userMapper" parent="baseMapper">
-		<property name="mapperInterface" value="cc.pp.crm.dao.UserMapper" />
+		<property name="mapperInterface" value="zx.soft.jetty.dao.UserMapper" />
 	</bean>
 
 	<mvc:annotation-driven>
@@ -33,7 +33,7 @@
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath*:cc/pp/crm/dao/*.xml" />
+		<property name="mapperLocations" value="classpath*:zx/soft/jetty/dao/*.xml" />
 	</bean>
 
 	<bean id="transactionManager"
@@ -43,13 +43,13 @@
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
-		<property name="driverClassName" value="${crm.jdbc.driverClassName}" />
-		<property name="url" value="${crm.jdbc.url}" />
-		<property name="username" value="${crm.jdbc.username}" />
-		<property name="password" value="${crm.jdbc.password}" />
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${user.db.url}" />
+		<property name="username" value="${user.db.username}" />
+		<property name="password" value="${user.db.password}" />
 		<property name="validationQuery" value="select 1" />
 	</bean>
 
-	<context:property-placeholder location="classpath:jdbc.properties" />
+	<context:property-placeholder location="classpath:data_db.properties" />
 
 </beans>

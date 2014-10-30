@@ -1,4 +1,4 @@
-package cc.pp.crm.dao;
+package zx.soft.jetty.dao;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;

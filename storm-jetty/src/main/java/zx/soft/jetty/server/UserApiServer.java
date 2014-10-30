@@ -33,7 +33,7 @@ public class UserApiServer {
 	 */
 	public static void main(String[] args) throws Exception {
 		Properties props = new Properties();
-		props.load(UserApiServer.class.getClassLoader().getResourceAsStream("conf.properties"));
+		props.load(UserApiServer.class.getClassLoader().getResourceAsStream("web_server.properties"));
 		new UserApiServer().startJetty(Integer.valueOf(props.getProperty("api.port", String.valueOf(DEFAULT_PORT))));
 	}
 
