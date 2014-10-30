@@ -24,8 +24,11 @@ public class UserApiServer {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserApiServer.class);
 
+	// 默认端口
 	private static final int DEFAULT_PORT = 8080;
+	// Context路径
 	private static final String CONTEXT_PATH = "/";
+	// Mapping路径
 	private static final String MAPPING_URL = "/*";
 
 	/**
