@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <configuration>
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -6,11 +8,19 @@
 		</encoder>
 	</appender>
 
-	<!-- <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender"> 
-		<file>logs/system.log</file> <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> 
-		<fileNamePattern>logs/system.%d{yyyy-MM-dd}.zip</fileNamePattern> <maxHistory>15</maxHistory> 
-		</rollingPolicy> <append>true</append> <encoder> <pattern>%date %level [%thread] 
-		%logger{10} [%file:%line] %msg%n </pattern> </encoder> </appender> -->
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/system.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/system.%d{yyyy-MM-dd}.zip</fileNamePattern>
+			<maxHistory>15</maxHistory>
+		</rollingPolicy>
+		<append>true</append>
+		<encoder>
+			<pattern>%date %level [%thread]
+				%logger{10} [%file:%line] %msg%n </pattern>
+		</encoder>
+	</appender>
 
 	<appender name="accessLogAppender"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
