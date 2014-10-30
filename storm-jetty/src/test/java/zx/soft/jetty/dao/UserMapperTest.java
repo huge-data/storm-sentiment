@@ -16,7 +16,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import zx.soft.jetty.dao.UserMapper;
 import zx.soft.jetty.model.User;
 import zx.soft.jetty.model.UserQueryCondition;
 
@@ -26,11 +25,12 @@ import zx.soft.jetty.model.UserQueryCondition;
 @Transactional
 public class UserMapperTest {
 
-	final long uid = 1;
-	final String member_100 = "User [uid=1, mid=100, name=张三, nick=张三昵称, gender=0]";
-	final String member_101 = "User [uid=1, mid=101, name=李四, nick=李四昵称, gender=1]";
-	final String member_102 = "User [uid=1, mid=101, name=李四, nick=李四昵称, gender=1]";
-	final String member_103 = "User [uid=1, mid=100, name=张三, nick=张三昵称, gender=0]";
+	final long uid_1 = 1;
+	final long uid_2 = 2;
+	final String user_101 = "User:{uid=1, mid=100, name=张三, nick=张三昵称, gender=0}";
+	final String user_102 = "User:{uid=1, mid=101, name=张三, nick=张三昵称, gender=1}";
+	final String user_103 = "User:{uid=2, mid=100, name=李四, nick=李四昵称, gender=0}";
+	final String user_104 = "User:{uid=2, mid=101, name=李四, nick=李四昵称, gender=1}";
 
 	@Inject
 	private UserMapper userMapper;
@@ -48,47 +48,44 @@ public class UserMapperTest {
 
 	@Test
 	public void testGetUser() {
-		User user = userMapper.get(uid, 101);
-		assertEquals(member_102, user.toString());
-		assertNull(userMapper.get(uid, 12345678)); // 没有该用户
+		User user = userMapper.get(uid_1, 101);
+		assertEquals(user_102, user.toString());
+		assertNull(userMapper.get(uid_1, 12345678)); // 没有该用户
 	}
 
 	@Test
 	public void testGetUsers() {
-		UserQueryCondition condition = new UserQueryCondition().setUid(uid);
+		UserQueryCondition condition = new UserQueryCondition().setUid(uid_1);
 		List<User> users = userMapper.list(condition);
 
 		assertEquals(2, users.size());
-		assertEquals(member_102, users.get(0).toString());
+		assertEquals(user_101, users.get(0).toString());
 	}
 
 	@Test
 	public void testGetUsers_gender() {
-		UserQueryCondition condition = new UserQueryCondition().setUid(uid).setGender(1);
+		UserQueryCondition condition = new UserQueryCondition().setUid(uid_1).setGender(1);
 		List<User> users = userMapper.list(condition);
 		assertEquals(1, users.size());
-		assertEquals(member_101, users.get(0).toString());
+		assertEquals(user_102, users.get(0).toString());
 	}
 
 	@Test
 	public void testQueryCountByUid() {
-		int count = userMapper.queryCountByUid(1);
-		assertEquals(count, 3);
+		int count = userMapper.queryCountByUid(uid_1);
+		assertEquals(count, 2);
 	}
 
 	@Test
 	public void testUpdate() {
-		User user = userMapper.get(uid, 100);
+		User user = userMapper.get(uid_2, 100);
 		user.setName("张三更新").setGender(1);
 		userMapper.update(user);
-		assertEquals(
-				"User [uid=1, mid=100, is_member=0, identify=18888888888, name=张三更新, nick=张三昵称, gender=1, status=1]",
-				userMapper.get(uid, 100).toString());
+		assertEquals("User:{uid=2, mid=100, name=李四, nick=张三更新, gender=0}", userMapper.get(uid_2, 100).toString());
 
 		user.setName(""); // 抹掉名字
 		userMapper.update(user);
-		assertEquals("User [uid=1, mid=100, is_member=0, identify=18888888888, name=, nick=张三昵称, gender=1, status=1]",
-				userMapper.get(uid, 100).toString());
+		assertEquals("User:{uid=2, mid=100, name=, nick=张三更新, gender=0}", userMapper.get(uid_2, 100).toString());
 	}
 
 	@Test
