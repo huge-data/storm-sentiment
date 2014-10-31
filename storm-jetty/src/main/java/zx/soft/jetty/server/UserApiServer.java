@@ -17,6 +17,11 @@ import org.springframework.web.servlet.DispatcherServlet;
 /**
  * 用户数据接口服务
  * 
+ * 接口说明：
+ *     1、http://localhost:8111/users/{uid}   POST: User
+ *     2、http://localhost:8111/users/{uid}/{mid}   DELETE
+ *     3、http://localhost:8111/users/{uid}/{mid}/gender  GET
+ * 
  * @author wanggang
  *
  */

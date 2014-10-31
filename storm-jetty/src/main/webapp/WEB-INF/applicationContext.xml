@@ -18,6 +18,13 @@
 	<bean id="userMapper" parent="baseMapper">
 		<property name="mapperInterface" value="zx.soft.jetty.dao.UserMapper" />
 	</bean>
+	
+	<bean id="baseMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		abstract="true" lazy-init="true">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="customObjectMapper" class="zx.soft.jetty.utils.CustomObjectMapper" />
 
 	<mvc:annotation-driven>
 		<mvc:message-converters>
