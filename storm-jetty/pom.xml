@@ -82,6 +82,7 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
+
 		<!-- 测试包 -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -139,8 +140,8 @@
 				<configuration>
 					<driver>com.mysql.jdbc.Driver</driver>
 					<url>jdbc:mysql://127.0.0.1:3306?characterEncoding=utf-8</url>
-					<username>root</username>
-					<password>root</password>
+					<username>integration</username>
+					<password></password>
 					<encoding>UTF-8</encoding>
 					<!-- 如果执行-Dmaven.test.skip=true，所有的executions都被忽略 -->
 					<skip>${maven.test.skip}</skip>
@@ -170,22 +171,47 @@
 						<configuration>
 							<autocommit>true</autocommit>
 							<srcFiles>
-								<srcFile>src/test/sql/user.sql</srcFile>
+								<srcFile>src/test/sql/user_db.sql</srcFile>
 							</srcFiles>
 						</configuration>
 					</execution>
-					<!-- 测试结束清空数据库 -->
+					<!-- 创建数据表 -->
 					<execution>
-						<id>drop-db-after-test</id>
+						<id>create-schema</id>
 						<phase>process-test-resources</phase>
 						<goals>
 							<goal>execute</goal>
 						</goals>
 						<configuration>
 							<autocommit>true</autocommit>
-							<sqlCommand>DROP DATABASE IF EXISTS `user_dev`</sqlCommand>
+							<srcFiles>
+								<srcFile>src/test/sql/user_schema.sql</srcFile>
+							</srcFiles>
 						</configuration>
 					</execution>
+					<!-- 创建数据 -->
+					<execution>
+						<id>create-data</id>
+						<phase>process-test-resources</phase>
+						<goals>
+							<goal>execute</goal>
+						</goals>
+						<configuration>
+							<orderFile>ascending</orderFile>
+							<fileset>
+								<basedir>${basedir}</basedir>
+								<includes>
+									<include>src/test/sql/test_data2.sql</include>
+									<include>src/test/sql/test_data1.sql</include>
+								</includes>
+							</fileset>
+						</configuration>
+					</execution>
+					<!-- 测试结束清空数据库 -->
+					<!-- <execution> <id>drop-db-after-test</id> <phase>process-test-resources</phase> 
+						<goals> <goal>execute</goal> </goals> <configuration> <autocommit>true</autocommit> 
+						<sqlCommand>DROP DATABASE IF EXISTS `user_dev`</sqlCommand> </configuration> 
+						</execution> -->
 				</executions>
 			</plugin>
 			<plugin>
