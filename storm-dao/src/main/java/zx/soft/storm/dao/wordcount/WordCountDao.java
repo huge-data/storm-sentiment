@@ -1,5 +1,11 @@
 package zx.soft.storm.dao.wordcount;
 
+import java.util.HashMap;
+
+import org.apache.ibatis.annotations.Arg;
+import org.apache.ibatis.annotations.ConstructorArgs;
+import org.apache.ibatis.annotations.Insert;
+
 import zx.soft.storm.dao.domain.InsertWordCount;
 
 /**
@@ -16,7 +22,11 @@ public interface WordCountDao {
 	public void insertWordCount(InsertWordCount insertWordCount);
 
 	/**
-	 * 
+	 * 测试数据
 	 */
+	@Insert("INSERT INTO `test` (`name`,`text`) VALUES (#{name}, #{text})")
+	@ConstructorArgs(value = { @Arg(column = "name", javaType = String.class),
+			@Arg(column = "text", javaType = String.class) })
+	public void insertTestData(HashMap<String, String> data);
 
 }
