@@ -4,7 +4,7 @@
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>%d{MMdd.HHmmss.SSS} [%-24t] [%-5p] [%-22c] [L:%-3L] - %m%n</pattern>
+			<pattern>%d{MMdd.HHmmss.SSS} [%-20t] [%-5p] [%-20c] [L:%-3L] - %m%n</pattern>
 		</encoder>
 		<!-- 只输出level级别的日志 -->
 		<filter class="ch.qos.logback.classic.filter.LevelFilter">
@@ -16,7 +16,7 @@
 
 	<appender name="FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<File>logs/storm-web.log</File>
+		<File>logs/storm-redis.log</File>
 		<encoder>
 			<pattern>%d{MMdd.HHmmss} [%-22t] %-5p L:%-3L %-22c{0} - %m%n</pattern>
 		</encoder>
@@ -25,7 +25,7 @@
 			<level>INFO</level>
 		</filter>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>logs/storm-web.log.%d{yyyy-MM-dd}.tar.gz</fileNamePattern>
+			<fileNamePattern>logs/storm-redis.log.%d{yyyy-MM-dd}.tar.gz</fileNamePattern>
 			<maxHistory>30</maxHistory>
 		</rollingPolicy>
 	</appender>
