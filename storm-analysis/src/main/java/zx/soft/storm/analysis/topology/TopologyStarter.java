@@ -49,7 +49,7 @@ public class TopologyStarter {
 			}
 		} else {
 			LocalCluster cluster = new LocalCluster();
-			cluster.submitTopology("local-test", conf, builder.createTopology());
+			cluster.submitTopology("local-AnalyzerDemo", conf, builder.createTopology());
 		}
 	}
 }

@@ -20,12 +20,7 @@
 		<!-- 本地包 -->
 		<dependency>
 			<groupId>zx.soft</groupId>
-			<artifactId>storm-redis</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>zx.soft</groupId>
-			<artifactId>storm-dao</artifactId>
+			<artifactId>storm-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<!-- Restlet包 -->

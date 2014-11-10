@@ -13,7 +13,7 @@ import java.sql.Statement;
 
 public class DbConn {
 
-	static String dbname = "test";
+	static String dbname = "AnalyzerDemo";
 	static String user = "www-data"; //输入用户与密码
 	static String pass = "www-data";
 	//	static String host = "127.0.0.1";

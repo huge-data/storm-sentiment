@@ -3,7 +3,7 @@ package zx.soft.storm.redis.demo;
 import zx.soft.storm.redis.cache.dao.Cache;
 import zx.soft.storm.redis.cache.factory.CacheFactory;
 
-public class Demo {
+public class RedisDemo {
 
 	public static void main(String[] args) {
 

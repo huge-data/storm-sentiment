@@ -1,20 +1,20 @@
-package zx.soft.storm.analysis.utils;
+package zx.soft.storm.analysis.demo;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.Map.Entry;
 
-public class test {
+import zx.soft.storm.analysis.utils.AnalyzerTool;
+
+public class AnalyzerDemo {
+
 	private static AnalyzerTool analyzerTool;
 
 	public static void main(final String[] args) {
-		// TODO Auto-generated method stub
-
 		analyzerTool = new AnalyzerTool();
 
 		//		\p{Punct}	Punctuation: One of !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
 		String str = "I like to build things. Coding personal projects since the 7th grade has given me a great appreciation "
-				+ "for perpetual self-learning through doing.I am a huge a dvocate of open source, test driven development"
+				+ "for perpetual self-learning through doing.I am a huge a dvocate of open source, AnalyzerDemo driven development"
 				+ " (untested code is broken code) and code review (unreviewed code is bad code). ";
 		str = "综合消息,近日,湖南湘潭县妇幼保健院一产妇死亡, " + "经媒体报道引发关注。据“央视新闻”消息,湘潭县卫生局称,胎儿出 生后产妇出现呕吐呛咳,院方立即抢救,但产妇因羊水栓塞引 "
 				+ "发多器官功能衰竭,抢救无效死亡。目前湘潭县卫生局 、司法局已介入调查。据此前媒体报道,10 日上午11点,医生给张女士"
@@ -31,16 +31,12 @@ public class test {
 
 	public static void testAnalyzerEngLish(final String str) {
 		HashMap<String, Integer> result = analyzerTool.getWordAndCounts(str);
-
 		System.out.println(result.toString());
-		Iterator iter = result.entrySet().iterator();
-		while (iter.hasNext()) {
-			Map.Entry entry = (Map.Entry) iter.next();
-			Object key = entry.getKey();
-			Object val = entry.getValue();
-			System.out.println("key: " + key);
-			System.out.println("value: " + val);
+		for (Entry<String, Integer> temp : result.entrySet()) {
+			System.out.println("key: " + temp.getKey());
+			System.out.println("value: " + temp.getValue());
 		}
 		System.out.println("中文lowercase".toLowerCase());
 	}
+
 }

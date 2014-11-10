@@ -13,6 +13,23 @@
 	<name>Storm Core</name>
 
 	<dependencies>
+		<!-- 本地包 -->
+		<dependency>
+			<groupId>zx.soft</groupId>
+			<artifactId>storm-dao</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>zx.soft</groupId>
+			<artifactId>storm-analysis</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>zx.soft</groupId>
+			<artifactId>storm-redis</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<!-- 测试包 -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

@@ -16,7 +16,7 @@
 
 	<appender name="FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<File>logs/storm-dao.log</File>
+		<File>logs/storm-core.log</File>
 		<encoder>
 			<pattern>%d{ISO8601} [%thread] %-5level %logger{36} [Line:%-3L] - %msg%n</pattern>
 		</encoder>
@@ -25,15 +25,10 @@
 			<level>INFO</level>
 		</filter>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>logs/storm-dao.log.%d{yyyy-MM-dd}.tar.gz</fileNamePattern>
+			<fileNamePattern>logs/storm-core.log.%d{yyyy-MM-dd}.tar.gz</fileNamePattern>
 			<maxHistory>30</maxHistory>
 		</rollingPolicy>
 	</appender>
-
-	<!-- org.apache.ibatis包下面的java类 -->
-	<logger name="org.apache.ibatis" level="ERROR" addtivity="false">
-		<appender-ref>FILE</appender-ref>
-	</logger>
 
 	<root level="DEBUGE">
 		<appender-ref ref="FILE" />
