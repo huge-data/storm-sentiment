@@ -5,6 +5,7 @@ import java.util.Properties;
 import org.restlet.Component;
 import org.restlet.data.Protocol;
 
+import zx.soft.negative.sentiment.jackson.ReplaceConvert;
 import zx.soft.storm.web.application.StreamAnslysisApplication;
 import zx.soft.storm.web.utils.ConfigUtil;
 
@@ -13,7 +14,7 @@ import zx.soft.storm.web.utils.ConfigUtil;
  * 
  * @author wanggang
  * 示例：
- *     1、http://localhost:8900/stream/wordcount
+ *     1、http://localhost:8100/stream/wordcount
  *     POST: [ "测试数据1", "测试数据2" ]
  *
  */
@@ -45,7 +46,7 @@ public class StreamAnalysisServer {
 		component.getServers().add(Protocol.HTTP, PORT);
 		try {
 			component.getDefaultHost().attach("/stream", siteApplication);
-			//			ReplaceConvert.configureJacksonConverter();
+			ReplaceConvert.configureJacksonConverter();
 			component.start();
 		} catch (Exception e) {
 			throw new RuntimeException(e);

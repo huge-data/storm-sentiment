@@ -5,7 +5,10 @@ import java.util.List;
 import org.restlet.Application;
 import org.restlet.Restlet;
 import org.restlet.routing.Router;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import zx.soft.storm.core.redis.RedisPersist;
 import zx.soft.storm.web.resource.StreamAnalysisResource;
 
 /**
@@ -16,12 +19,14 @@ import zx.soft.storm.web.resource.StreamAnalysisResource;
  */
 public class StreamAnslysisApplication extends Application {
 
-	//	private static Cache cache;
+	private static Logger logger = LoggerFactory.getLogger(StreamAnslysisApplication.class);
 
-	//	public static final String SITE_GROUPS = "sent:site:groups";
+	private static RedisPersist redisPersist;
+
+	public static final String STREAM_WORD_COUNT_KEY = "stream:word:count";
 
 	public StreamAnslysisApplication() {
-		//		cache = CacheFactory.getInstance();
+		redisPersist = new RedisPersist(STREAM_WORD_COUNT_KEY);
 	}
 
 	@Override
@@ -32,18 +37,15 @@ public class StreamAnslysisApplication extends Application {
 	}
 
 	/**
-	 * 插入站点组合数据
+	 * 持久化到Redis集群中
 	 */
 	public void insertStreamData(List<String> data) {
-		for (String d : data) {
-			System.out.println(d);
-			// 设置hash表
-			//			cache.hset(SITE_GROUPS, CheckSumUtils.getMD5(sites), sites);
-		}
+		logger.info("insert datas' size=" + data.size());
+		redisPersist.addValues(data.toArray(new String[data.size()]));
 	}
 
 	public void close() {
-		//		cache.close();
+		redisPersist.close();
 	}
 
 }
