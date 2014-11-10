@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import redis.clients.jedis.exceptions.JedisConnectionException;
 import zx.soft.storm.redis.cache.dao.Cache;
+import zx.soft.storm.redis.shard.RedisCache;
 import zx.soft.storm.redis.utils.Config;
 import zx.soft.storm.redis.utils.RetryHandler;
 

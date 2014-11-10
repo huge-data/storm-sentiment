@@ -1,4 +1,4 @@
-package zx.soft.storm.redis.cache.factory;
+package zx.soft.storm.redis.shard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,6 @@ import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisShardInfo;
 import zx.soft.storm.redis.cache.dao.Cache;
 import zx.soft.storm.redis.constant.RedisProtocol;
-import zx.soft.storm.redis.shard.ValueShardedJedis;
-import zx.soft.storm.redis.shard.ValueShardedJedisPool;
 
 /**
  * Redis缓存功能实现
