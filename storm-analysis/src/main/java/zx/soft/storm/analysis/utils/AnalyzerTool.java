@@ -32,7 +32,7 @@ public class AnalyzerTool {
 	}
 
 	public HashMap<String, Integer> getWordAndCounts(final String text) {
-		HashMap<String, Integer> result = new HashMap<String, Integer>();
+		HashMap<String, Integer> result = new HashMap<>();
 		List<String> words = analyzerTextToList(text);
 		for (String word : words) {
 			if (result.get(word) == null) {
@@ -68,7 +68,7 @@ public class AnalyzerTool {
 	}
 
 	public List<String> analyzerTextToList(final String text) {
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
 		try (TokenStream tokenStream = analyzer.tokenStream(null, new StringReader(text))) {
 			CharTermAttribute charTermAttribute = tokenStream.addAttribute(CharTermAttribute.class);
 			tokenStream.reset();

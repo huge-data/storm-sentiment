@@ -24,11 +24,6 @@
 			<artifactId>storm-analysis</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>zx.soft</groupId>
-			<artifactId>storm-redis</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 		<!-- 测试包 -->
 		<dependency>
 			<groupId>junit</groupId>

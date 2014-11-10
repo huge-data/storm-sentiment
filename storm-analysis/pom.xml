@@ -18,6 +18,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>zx.soft</groupId>
+			<artifactId>storm-redis</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.storm</groupId>
 			<artifactId>storm-core</artifactId>
 			<scope>provided</scope>

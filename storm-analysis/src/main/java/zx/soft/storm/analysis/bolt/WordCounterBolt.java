@@ -3,8 +3,6 @@ package zx.soft.storm.analysis.bolt;
 import java.util.HashMap;
 import java.util.Map;
 
-import zx.soft.storm.analysis.redis.WordCount;
-import zx.soft.storm.analysis.redis.WordCountDao;
 import backtype.storm.task.OutputCollector;
 import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.OutputFieldsDeclarer;
@@ -13,7 +11,7 @@ import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
 
-public class TestWordCounter extends BaseRichBolt {
+public class WordCounterBolt extends BaseRichBolt {
 
 	/**
 	 * 单词计数
@@ -23,8 +21,6 @@ public class TestWordCounter extends BaseRichBolt {
 	String name;
 	Map<String, Integer> counters;
 	private OutputCollector collector;
-	private WordCountDao wcd; //写wordcount对象入表
-	private WordCount wc;
 
 	@SuppressWarnings("rawtypes")
 	@Override
@@ -33,16 +29,10 @@ public class TestWordCounter extends BaseRichBolt {
 		this.name = context.getThisComponentId();
 		this.id = context.getThisTaskId();
 		this.collector = collector;
-		this.wcd = new WordCountDao();
 	}
 
 	public void writeWordIntoDb(final String word, final long count) {
-		wc = new WordCount(word, count);
-		if (count == 1) {
-			wcd.insert(wc);
-		} else {
-			wcd.update(wc);
-		}
+		//
 	}
 
 	@Override
@@ -74,4 +64,5 @@ public class TestWordCounter extends BaseRichBolt {
 			System.out.println(entry.getKey() + ": " + entry.getValue());
 		}
 	}
+
 }

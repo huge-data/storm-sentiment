@@ -31,7 +31,12 @@ public class StreamAnalysisResource extends ServerResource {
 	@Post("json")
 	public Object streamData(List<String> data) {
 		logger.info("Request Url: " + URLCodecUtils.decoder(getReference().toString(), "utf-8") + ".");
-		application.insertStreamData(data);
+		try {
+			application.insertStreamData(data);
+		} catch (Exception e) {
+			logger.error("StreamAnalysisResource Exception:{}", e);
+			application.close();
+		}
 		return new ErrorResponse.Builder(0, "ok").build();
 	}
 
