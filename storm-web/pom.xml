@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>zx.soft</groupId>
 		<artifactId>storm-parent</artifactId>
-		<version>1.0.0</version>
+		<version>1.2.0</version>
 		<relativePath>../storm-parent/pom.xml</relativePath>
 	</parent>
 
@@ -89,7 +89,7 @@
 				<version>2.4</version>
 				<configuration>
 					<excludes>
-						<exclude>log4j.properties</exclude>
+						<exclude>logback.xml</exclude>
 						<exclude>web-server.properties</exclude>
 					</excludes>
 				</configuration>

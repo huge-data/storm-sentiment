@@ -4,7 +4,7 @@
 
 	<groupId>zx.soft</groupId>
 	<artifactId>storm-sentiment</artifactId>
-	<version>1.0.0</version>
+	<version>1.2.0</version>
 	<packaging>pom</packaging>
 	<name>Storm Sentiment [Build POM]</name>
 	<description>Sentiment Analysis based on Storm.</description>

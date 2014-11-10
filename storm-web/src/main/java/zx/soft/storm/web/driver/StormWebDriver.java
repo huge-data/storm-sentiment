@@ -11,7 +11,6 @@ public class StormWebDriver {
 
 	/**
 	 * 主函数
-	 * @param args
 	 */
 	public static void main(String[] args) {
 
