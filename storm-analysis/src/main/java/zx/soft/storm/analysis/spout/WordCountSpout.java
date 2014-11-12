@@ -19,7 +19,7 @@ public class WordCountSpout extends BaseRichSpout {
 
 	public static final String STREAM_WORD_COUNT_KEY = "stream:word:count";
 
-	SpoutOutputCollector collector;
+	private SpoutOutputCollector collector;
 
 	@SuppressWarnings("rawtypes")
 	@Override

@@ -20,6 +20,10 @@ public class WordCountDemo {
 		wordCount.insertWordCount("wordcount", "词语3", 9);
 		System.out.println("insert ok!");
 		/**
+		 * 查看结果是否存在
+		 */
+		System.out.println(wordCount.isWordCountExisted("词语11"));
+		/**
 		 * 更新词频统计结果
 		 */
 		wordCount.updateWordCount("词语1", 13);

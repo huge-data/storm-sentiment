@@ -11,8 +11,6 @@ public class AnalyzerDemo {
 
 	public static void main(final String[] args) {
 		analyzerTool = new AnalyzerTool();
-
-		//		\p{Punct}	Punctuation: One of !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
 		String str = "I like to build things. Coding personal projects since the 7th grade has given me a great appreciation "
 				+ "for perpetual self-learning through doing.I am a huge a dvocate of open source, AnalyzerDemo driven development"
 				+ " (untested code is broken code) and code review (unreviewed code is bad code). ";
@@ -22,8 +20,7 @@ public class AnalyzerDemo {
 				+ "诉家属,产妇顺利产下宝宝。半个 小时后,护士通知守在手术室外的刘先生,称产妇出现大出血情况,刘先生说,1个小时后,护士又"
 				+ "通知他,称出血情况 没止住,要其赶紧去买止血药。下午5点左 右,一名护士通知刘先生,称产妇大出血,现在必须切除子宫,需要"
 				+ "签字。晚上9点,刘先生家人听到有人在议论,说产妇已经死了。情急之下的刘先生上前使劲拍打手术室的大 门,这时,出来一 个" + "自称是代理院长的人,说产妇仍在抢救,有脉搏。";
-		//		str = "%E7%BB%BC%E5%90%88%E6%B6%88%E6%81%AF%2C%E8%BF%91%E6%97%A5%2C%E6%B9%96%E5%8D%97%E6%B9%98%E6%BD%AD%E5%8E%BF%E5";
-		System.out.println(str);
+		System.out.println(str.toLowerCase());
 		testAnalyzerEngLish(str);
 		str = str.replaceAll("\\p{Punct}", " ");
 		testAnalyzerEngLish(str);

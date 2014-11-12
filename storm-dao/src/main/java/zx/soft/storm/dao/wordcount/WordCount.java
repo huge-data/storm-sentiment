@@ -53,6 +53,19 @@ public class WordCount {
 	}
 
 	/**
+	 * 判断某个词频结果存在于否
+	 */
+	public boolean isWordCountExisted(String word) {
+		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
+			WordCountDao wordCountDao = sqlSession.getMapper(WordCountDao.class);
+			if (wordCountDao.isWordCountExisted(word) == null) {
+				return Boolean.FALSE;
+			}
+			return Boolean.TRUE;
+		}
+	}
+
+	/**
 	 * 查询词频统计结果，查询某个词频结果
 	 */
 	public int selectWordCountByWord(String word) {

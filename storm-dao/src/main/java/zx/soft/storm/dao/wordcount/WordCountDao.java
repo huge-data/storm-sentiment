@@ -34,6 +34,12 @@ public interface WordCountDao {
 	public void updateWordCount(@Param("word") String w, @Param("count") int c);
 
 	/**
+	 * 判断某个词频结果存在于否
+	 */
+	@Select("SELECT `word` FROM `wordcount` WHERE `word` = #{word}")
+	public String isWordCountExisted(@Param("word") String w);
+
+	/**
 	 * 查询词频统计结果，查询某个词频结果
 	 */
 	@Select("SELECT `count` FROM `wordcount` WHERE `word` = #{word}")
