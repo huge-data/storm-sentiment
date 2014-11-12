@@ -16,6 +16,8 @@ import zx.soft.storm.web.utils.ConfigUtil;
  * 示例：
  *     1、http://localhost:8100/stream/wordcount
  *     POST: [ "测试数据1", "测试数据2" ]
+ *     2、http://localhost:8100/stream/wordcount/{topn}
+ *     GET
  *
  */
 public class StreamAnalysisServer {
