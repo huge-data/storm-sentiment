@@ -10,7 +10,4 @@
 		(#{word},#{count},UNIX_TIMESTAMP());
 	</insert>
 	
-	<!--  -->
-	
-
 </mapper>

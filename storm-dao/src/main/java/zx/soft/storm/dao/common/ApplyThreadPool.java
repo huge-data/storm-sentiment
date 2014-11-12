@@ -1,4 +1,4 @@
-package zx.soft.storm.web.utils;
+package zx.soft.storm.dao.common;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.concurrent.ArrayBlockingQueue;

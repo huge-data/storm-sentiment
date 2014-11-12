@@ -32,8 +32,8 @@
 
 	<!-- org.restlet包中的java类 -->
 	<logger name="org.restlet" level="WARN" addtivity="false">
-		<appender-ref>STDOUT</appender-ref>
-		<appender-ref>FILE</appender-ref>
+		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
 	</logger>
 
 	<root level="DEBUGE">

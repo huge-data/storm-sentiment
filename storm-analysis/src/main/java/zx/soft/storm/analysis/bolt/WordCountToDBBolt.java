@@ -3,6 +3,8 @@ package zx.soft.storm.analysis.bolt;
 import java.util.HashMap;
 import java.util.Map;
 
+import zx.soft.storm.dao.common.MybatisConfig;
+import zx.soft.storm.dao.wordcount.WordCount;
 import backtype.storm.task.OutputCollector;
 import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.OutputFieldsDeclarer;
@@ -11,7 +13,7 @@ import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
 
-public class WordWriteToDBBolt extends BaseRichBolt {
+public class WordCountToDBBolt extends BaseRichBolt {
 
 	/**
 	 * 单词计数
@@ -21,6 +23,8 @@ public class WordWriteToDBBolt extends BaseRichBolt {
 	private String name;
 	private Map<String, Long> counters;
 	private OutputCollector collector;
+
+	WordCount wordCount = new WordCount(MybatisConfig.ServerEnum.wordcount);
 
 	@SuppressWarnings("rawtypes")
 	@Override

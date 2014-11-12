@@ -26,12 +26,12 @@
 
 	<!-- redis.clients包中的java类 -->
 	<logger name="redis.clients" level="WARN" addtivity="false">
-		<appender-ref>FILE</appender-ref>
+		<appender-ref ref="FILE" />
 	</logger>
 
 	<!-- io.netty包中的java类 -->
 	<logger name="io.netty" level="ERROR" addtivity="false">
-		<appender-ref>FILE</appender-ref>
+		<appender-ref ref="FILE" />
 	</logger>
 
 	<root level="DEBUGE">

@@ -32,13 +32,13 @@
 	
 	<!-- backtype.storm包中的java类 -->
 	<logger name="backtype.storm" level="WARN" addtivity="false">
-		<appender-ref>STDOUT</appender-ref>
-		<appender-ref>FILE</appender-ref>
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
 	</logger>
 
 	<!-- org.apache.zookeeper包中的java类 -->
 	<logger name="org.apache.zookeeper" level="ERROR" addtivity="false">
-		<appender-ref>FILE</appender-ref>
+		<appender-ref ref="FILE" />
 	</logger>
 
 	<root level="DEBUGE">

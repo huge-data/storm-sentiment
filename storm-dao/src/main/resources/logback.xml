@@ -32,7 +32,7 @@
 
 	<!-- org.apache.ibatis包下面的java类 -->
 	<logger name="org.apache.ibatis" level="ERROR" addtivity="false">
-		<appender-ref>FILE</appender-ref>
+		<appender-ref ref="FILE" />
 	</logger>
 
 	<root level="DEBUGE">

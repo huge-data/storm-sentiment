@@ -16,11 +16,6 @@
 		<!-- 本地包 -->
 		<dependency>
 			<groupId>zx.soft</groupId>
-			<artifactId>storm-dao</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>zx.soft</groupId>
 			<artifactId>storm-analysis</artifactId>
 			<version>${project.version}</version>
 		</dependency>
