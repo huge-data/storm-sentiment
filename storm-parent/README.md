@@ -19,9 +19,9 @@ Maven父pom项目，将pom公共部分提取出来汇总在父pom中，降低各
         
         <!-- 指定父pom信息 -->
         <parent>
-          <groupId>cc.pp</groupId>
+          <groupId>zx.soft</groupId>
 	        <artifactId>parent</artifactId>
-	        <version>0.0.1-SNAPSHOT</version>
+	        <version>1.2.0</version>
         </parent>
 
         ...
@@ -29,9 +29,9 @@ Maven父pom项目，将pom公共部分提取出来汇总在父pom中，降低各
         <!-- 指定pp私有Maven仓库地址，以便下载父pom -->
         <repositories>
 	        <repository>
-		        <id>ppcc-public</id>
+		        <id>zxsoft-public</id>
 		        <name>Nexus Release Repository</name>
-		        <url>http://ops.pp.cc:3305/nexus/content/groups/public/</url>
+		        <url>http://192.168.3.23:18081/nexus/content/groups/public/</url>
 	        </repository>
         </repositories>
 
