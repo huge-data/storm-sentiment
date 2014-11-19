@@ -17,7 +17,7 @@ import zx.soft.storm.web.resource.WordCountResource;
 
 /**
  * 流式数据分析应用类
- * 
+ *
  * @author wanggang
  *
  */
@@ -36,6 +36,10 @@ public class StreamAnslysisApplication extends Application {
 	public StreamAnslysisApplication() {
 		redisPersist = new RedisPersist(STREAM_WORD_COUNT_KEY);
 		wordCount = new WordCount(MybatisConfig.ServerEnum.wordcount);
+	}
+
+	public void close() {
+		redisPersist.close();
 	}
 
 	@Override
@@ -68,10 +72,6 @@ public class StreamAnslysisApplication extends Application {
 	 */
 	public List<WordAndCount> selectWordCountTopN(int N) {
 		return wordCount.selectWordCountTopN(N);
-	}
-
-	public void close() {
-		redisPersist.close();
 	}
 
 }
