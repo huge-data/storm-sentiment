@@ -13,7 +13,7 @@ import zx.soft.storm.web.utils.URLCodecUtils;
 
 /**
  * 流式数据
- * 
+ *
  * @author wanggang
  *
  */
@@ -32,6 +32,7 @@ public class StreamAnalysisResource extends ServerResource {
 	public Object streamData(List<String> data) {
 		logger.info("Request Url: " + URLCodecUtils.decoder(getReference().toString(), "utf-8") + ".");
 		try {
+			//			System.out.println(data);
 			application.insertStreamData(data);
 		} catch (Exception e) {
 			logger.error("StreamAnalysisResource Exception:{}", e);
