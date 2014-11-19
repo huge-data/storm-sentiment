@@ -38,10 +38,6 @@ public class StreamAnslysisApplication extends Application {
 		wordCount = new WordCount(MybatisConfig.ServerEnum.wordcount);
 	}
 
-	public void close() {
-		redisPersist.close();
-	}
-
 	@Override
 	public Restlet createInboundRoot() {
 		Router router = new Router(getContext());
@@ -72,6 +68,10 @@ public class StreamAnslysisApplication extends Application {
 	 */
 	public List<WordAndCount> selectWordCountTopN(int N) {
 		return wordCount.selectWordCountTopN(N);
+	}
+
+	public void close() {
+		redisPersist.close();
 	}
 
 }
