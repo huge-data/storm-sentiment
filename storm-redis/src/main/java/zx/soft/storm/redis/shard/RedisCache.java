@@ -15,7 +15,7 @@ import zx.soft.storm.redis.constant.RedisProtocol;
 
 /**
  * Redis缓存功能实现
- * 
+ *
  * @author wanggang
  *
  */
@@ -24,10 +24,6 @@ public class RedisCache implements Cache {
 	private static Logger logger = LoggerFactory.getLogger(RedisCache.class);
 
 	private final ValueShardedJedisPool pool;
-
-	public RedisCache(String redisServers, String password) {
-		this(redisServers, RedisProtocol.DEFAULT_PORT, password);
-	}
 
 	public RedisCache(String redisServers, int redisPort, String password) {
 		List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>();
@@ -48,11 +44,30 @@ public class RedisCache implements Cache {
 		pool = new ValueShardedJedisPool(config, shards);
 	}
 
+	public RedisCache(String redisServers, String password) {
+		this(redisServers, RedisProtocol.DEFAULT_PORT, password);
+	}
+
+	@Override
+	public void close() {
+		pool.destroy();
+	}
+
 	@Override
 	public Long del(String... keys) {
 		ValueShardedJedis jedis = pool.getResource();
 		try {
 			return jedis.del(keys);
+		} finally {
+			pool.returnResource(jedis);
+		}
+	}
+
+	@Override
+	public void eval(String script, String[] keys, String... members) {
+		ValueShardedJedis jedis = pool.getResource();
+		try {
+			jedis.eval(script, keys, members);
 		} finally {
 			pool.returnResource(jedis);
 		}
@@ -69,10 +84,50 @@ public class RedisCache implements Cache {
 	}
 
 	@Override
-	public void eval(String script, String[] keys, String... members) {
+	public String hget(String key, String field) {
 		ValueShardedJedis jedis = pool.getResource();
 		try {
-			jedis.eval(script, keys, members);
+			return jedis.hget(key, field);
+		} finally {
+			pool.returnResource(jedis);
+		}
+	}
+
+	@Override
+	public Map<String, String> hgetAll(String key) {
+		ValueShardedJedis jedis = pool.getResource();
+		try {
+			return jedis.hgetAll(key);
+		} finally {
+			pool.returnResource(jedis);
+		}
+	}
+
+	@Override
+	public Long hset(String key, String field, String value) {
+		ValueShardedJedis jedis = pool.getResource();
+		try {
+			return jedis.hset(key, field, value);
+		} finally {
+			pool.returnResource(jedis);
+		}
+	}
+
+	@Override
+	public void lpush(String key, String... members) {
+		ValueShardedJedis jedis = pool.getResource();
+		try {
+			jedis.lpush(key, members);
+		} finally {
+			pool.returnResource(jedis);
+		}
+	}
+
+	@Override
+	public String rpop(String key) {
+		ValueShardedJedis jedis = pool.getResource();
+		try {
+			return jedis.rpop(key);
 		} finally {
 			pool.returnResource(jedis);
 		}
@@ -151,41 +206,6 @@ public class RedisCache implements Cache {
 		} finally {
 			pool.returnResource(jedis);
 		}
-	}
-
-	@Override
-	public Long hset(String key, String field, String value) {
-		ValueShardedJedis jedis = pool.getResource();
-		try {
-			return jedis.hset(key, field, value);
-		} finally {
-			pool.returnResource(jedis);
-		}
-	}
-
-	@Override
-	public String hget(String key, String field) {
-		ValueShardedJedis jedis = pool.getResource();
-		try {
-			return jedis.hget(key, field);
-		} finally {
-			pool.returnResource(jedis);
-		}
-	}
-
-	@Override
-	public Map<String, String> hgetAll(String key) {
-		ValueShardedJedis jedis = pool.getResource();
-		try {
-			return jedis.hgetAll(key);
-		} finally {
-			pool.returnResource(jedis);
-		}
-	}
-
-	@Override
-	public void close() {
-		pool.destroy();
 	}
 
 }

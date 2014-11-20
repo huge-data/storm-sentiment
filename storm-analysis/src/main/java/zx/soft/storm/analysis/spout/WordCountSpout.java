@@ -21,20 +21,9 @@ public class WordCountSpout extends BaseRichSpout {
 
 	private SpoutOutputCollector collector;
 
-	@SuppressWarnings("rawtypes")
 	@Override
-	public void open(final Map stormConf, final TopologyContext context, final SpoutOutputCollector collector) {
-		this.collector = collector;
-		cache = CacheFactory.getInstance();
-	}
-
-	@Override
-	public void nextTuple() {
-		String value = cache.spop(STREAM_WORD_COUNT_KEY);
-		while (value != null) {
-			collector.emit(new Values(value));
-			value = cache.spop(STREAM_WORD_COUNT_KEY);
-		}
+	public void ack(Object msgId) {
+		//
 	}
 
 	@Override
@@ -43,13 +32,24 @@ public class WordCountSpout extends BaseRichSpout {
 	}
 
 	@Override
-	public void ack(Object msgId) {
+	public void fail(Object msgId) {
 		//
 	}
 
 	@Override
-	public void fail(Object msgId) {
-		//
+	public void nextTuple() {
+		String value = cache.rpop(STREAM_WORD_COUNT_KEY);
+		while (value != null) {
+			collector.emit(new Values(value));
+			value = cache.rpop(STREAM_WORD_COUNT_KEY);
+		}
+	}
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	public void open(final Map stormConf, final TopologyContext context, final SpoutOutputCollector collector) {
+		this.collector = collector;
+		cache = CacheFactory.getInstance();
 	}
 
 }

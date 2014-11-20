@@ -11,7 +11,7 @@ import zx.soft.storm.redis.cache.factory.CacheFactory;
 
 /**
  * 持久化到Redis的封装类
- * 
+ *
  * @author wanggang
  *
  */
@@ -31,17 +31,17 @@ public class RedisPersist {
 	}
 
 	/**
-	 * 插入一组数据
+	 * 无重复插入一组数据
 	 */
 	public void addValues(String... values) {
 		cache.sadd(key, values);
 	}
 
 	/**
-	 * 输出一条数据，并从集合中删除
+	 * 关闭连接
 	 */
-	public String getOneValue() {
-		return cache.spop(key);
+	public void close() {
+		cache.close();
 	}
 
 	/**
@@ -57,6 +57,13 @@ public class RedisPersist {
 	}
 
 	/**
+	 * 输出一条数据，并从集合中删除
+	 */
+	public String getOneValue() {
+		return cache.spop(key);
+	}
+
+	/**
 	 * 输出集合大小
 	 */
 	public long getSetSize() {
@@ -65,10 +72,19 @@ public class RedisPersist {
 	}
 
 	/**
-	 * 关闭连接
+	 * 插入可重复的数据
+	 * @param values
 	 */
-	public void close() {
-		cache.close();
+	public void laddValuesToList(String... values) {
+		cache.lpush(key, values);
+	}
+
+	/**
+	 * 从list中获取一条数据，并从list中删除
+	 * @return
+	 */
+	public String rgetOneValueFromList() {
+		return cache.rpop(key);
 	}
 
 }

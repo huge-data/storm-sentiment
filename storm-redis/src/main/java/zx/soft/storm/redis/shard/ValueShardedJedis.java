@@ -27,7 +27,7 @@ import redis.clients.util.Sharded;
  *     这里的Redis主要是存放舆情数据的id，所以基本上在少量集和中，
  *     也就是每个集和的数据量很大，而不是集和很多，所以应该针对每个
  *     集和的value进行分片。
- *     
+ *
  * @author wanggang
  *
  */
@@ -55,6 +55,26 @@ public class ValueShardedJedis extends Sharded<Jedis, JedisShardInfo> implements
 	}
 
 	@Override
+	public Long bitcount(String key) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Long bitcount(String key, long start, long end) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public List<String> blpop(String arg) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public List<String> brpop(String arg) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public Long decr(String key) {
 		throw new UnsupportedOperationException();
 	}
@@ -77,6 +97,16 @@ public class ValueShardedJedis extends Sharded<Jedis, JedisShardInfo> implements
 			result |= jedis.del(keys);
 		}
 		return result;
+	}
+
+	@Override
+	public Long del(String key) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public String echo(String string) {
+		throw new UnsupportedOperationException();
 	}
 
 	public void eval(String script, String[] keys, String... members) {
@@ -189,6 +219,16 @@ public class ValueShardedJedis extends Sharded<Jedis, JedisShardInfo> implements
 	}
 
 	@Override
+	public ScanResult<Entry<String, String>> hscan(String key, int cursor) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public ScanResult<Entry<String, String>> hscan(String key, String cursor) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public Long hset(String key, String field, String value) {
 		return getShard(value).hset(key, field, value);
 	}
@@ -234,7 +274,20 @@ public class ValueShardedJedis extends Sharded<Jedis, JedisShardInfo> implements
 	}
 
 	@Override
-	public Long lpush(String key, String... string) {
+	public Long lpush(String key, String... members) {
+		if (members.length == 1) {
+			return getShard(members[0]).lpush(key, members[0]);
+		}
+
+		long result = 0;
+		for (Entry<Jedis, List<String>> entry : getShards(members)) {
+			result += entry.getKey().lpush(key, entry.getValue().toArray(new String[entry.getValue().size()]));
+		}
+		return result;
+	}
+
+	@Override
+	public Long lpushx(String key, String... string) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -259,12 +312,52 @@ public class ValueShardedJedis extends Sharded<Jedis, JedisShardInfo> implements
 	}
 
 	@Override
-	public String rpop(String key) {
+	public Long move(String key, int dbIndex) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
+	public Long persist(String key) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Long pfadd(String key, String... elements) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public long pfcount(String key) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String rpop(String key) {
+		// 随机选择一个shard
+		Jedis jedis = allShards[random.nextInt(allShards.length)];
+		String result = jedis.rpop(key);
+		if (result != null) {
+			return result;
+		}
+
+		// 如果碰巧随机到的shard中没有数据，则继续随机剩下所有的shard
+		List<Jedis> js = new ArrayList<Jedis>();
+		for (Jedis j : allShards) {
+			js.add(j);
+		}
+		js.remove(jedis);
+		return rpop(key, js);
+	}
+
+	@Override
 	public Long rpush(String key, String... string) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Long rpushx(String key, String... string) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -296,7 +389,18 @@ public class ValueShardedJedis extends Sharded<Jedis, JedisShardInfo> implements
 	}
 
 	@Override
+	public String set(String key, String value, String nxxx, String expx, long time) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public Boolean setbit(String key, long offset, boolean value) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Boolean setbit(String key, long offset, String value) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -389,6 +493,21 @@ public class ValueShardedJedis extends Sharded<Jedis, JedisShardInfo> implements
 	}
 
 	@Override
+	public ScanResult<String> sscan(String key, int cursor) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public ScanResult<String> sscan(String key, String cursor) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Long strlen(String key) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public String substr(String key, int start, int end) {
 		throw new UnsupportedOperationException();
 	}
@@ -405,6 +524,11 @@ public class ValueShardedJedis extends Sharded<Jedis, JedisShardInfo> implements
 
 	@Override
 	public Long zadd(String key, double score, String member) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Long zadd(String key, Map<String, Double> scoreMembers) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -559,6 +683,16 @@ public class ValueShardedJedis extends Sharded<Jedis, JedisShardInfo> implements
 	}
 
 	@Override
+	public ScanResult<Tuple> zscan(String key, int cursor) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public ScanResult<Tuple> zscan(String key, String cursor) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public Double zscore(String key, String member) {
 		throw new UnsupportedOperationException();
 	}
@@ -593,6 +727,26 @@ public class ValueShardedJedis extends Sharded<Jedis, JedisShardInfo> implements
 		return jedisMembersMap.entrySet();
 	}
 
+	/**
+	 *
+	 * @param key
+	 * @param jedises
+	 * @return
+	 */
+	private String rpop(String key, List<Jedis> jedises) {
+		if (jedises.isEmpty()) {
+			return null;
+		}
+		int index = random.nextInt(jedises.size());
+		Jedis jedis = jedises.get(index);
+		String result = jedis.rpop(key);
+		if (result != null) {
+			return result;
+		}
+		jedises.remove(index);
+		return rpop(key, jedises);
+	}
+
 	private String spop(String key, List<Jedis> jedises) {
 		if (jedises.isEmpty()) {
 			return null;
@@ -619,119 +773,6 @@ public class ValueShardedJedis extends Sharded<Jedis, JedisShardInfo> implements
 		}
 		jedises.remove(index);
 		return srandmember(key, jedises);
-	}
-
-	@Override
-	public Long persist(String key) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Boolean setbit(String key, long offset, String value) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Long strlen(String key) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Long zadd(String key, Map<String, Double> scoreMembers) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Long lpushx(String key, String... string) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Long rpushx(String key, String... string) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public List<String> blpop(String arg) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public List<String> brpop(String arg) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Long del(String key) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public String echo(String string) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Long move(String key, int dbIndex) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Long bitcount(String key) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public Long bitcount(String key, long start, long end) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public ScanResult<Entry<String, String>> hscan(String key, int cursor) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public ScanResult<String> sscan(String key, int cursor) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public ScanResult<Tuple> zscan(String key, int cursor) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public ScanResult<Entry<String, String>> hscan(String key, String cursor) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public ScanResult<String> sscan(String key, String cursor) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public ScanResult<Tuple> zscan(String key, String cursor) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public String set(String key, String value, String nxxx, String expx, long time) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Long pfadd(String key, String... elements) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public long pfcount(String key) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }
