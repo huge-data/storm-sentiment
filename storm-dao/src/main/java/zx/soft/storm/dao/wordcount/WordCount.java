@@ -39,6 +39,7 @@ public class WordCount {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
 			WordCountDao wordCountDao = sqlSession.getMapper(WordCountDao.class);
 			wordCountDao.addWordCountByOne(word);
+			sqlSession.commit();
 		}
 	}
 
@@ -49,6 +50,7 @@ public class WordCount {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
 			WordCountDao wordCountDao = sqlSession.getMapper(WordCountDao.class);
 			wordCountDao.deleteWordCount(word);
+			sqlSession.commit();
 		}
 	}
 
@@ -59,6 +61,7 @@ public class WordCount {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
 			WordCountDao wordCountDao = sqlSession.getMapper(WordCountDao.class);
 			wordCountDao.insertWordCount(new InsertWordCount(tablename, word, count));
+			sqlSession.commit();
 		}
 	}
 
@@ -102,6 +105,7 @@ public class WordCount {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
 			WordCountDao wordCountDao = sqlSession.getMapper(WordCountDao.class);
 			wordCountDao.updateWordCount(word, count);
+			sqlSession.commit();
 		}
 	}
 
