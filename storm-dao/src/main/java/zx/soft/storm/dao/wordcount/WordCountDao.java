@@ -34,6 +34,14 @@ public interface WordCountDao {
 	public void updateWordCount(@Param("word") String w, @Param("count") int c);
 
 	/**
+	 * 更新词频统计数据, 加1
+	 */
+	// @ConstructorArgs中指定的参数为：返回结果对象的构造函数参数
+	@Update("UPDATE `wordcount` SET `count` = count + 1  WHERE `word` = #{word}")
+	public void addWordCountByOne(@Param("word") String w);
+
+
+	/**
 	 * 判断某个词频结果存在于否
 	 */
 	@Select("SELECT `word` FROM `wordcount` WHERE `word` = #{word}")

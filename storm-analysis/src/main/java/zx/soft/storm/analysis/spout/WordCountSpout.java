@@ -39,9 +39,14 @@ public class WordCountSpout extends BaseRichSpout {
 	@Override
 	public void nextTuple() {
 		String value = cache.rpop(STREAM_WORD_COUNT_KEY);
-		while (value != null) {
+		if (value != null) {
 			collector.emit(new Values(value));
-			value = cache.rpop(STREAM_WORD_COUNT_KEY);
+		} else {
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

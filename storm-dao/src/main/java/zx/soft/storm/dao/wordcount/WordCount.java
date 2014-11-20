@@ -13,7 +13,7 @@ import zx.soft.storm.dao.domain.WordAndCount;
 
 /**
  * 词频统计封装
- * 
+ *
  * @author wanggang
  *
  */
@@ -33,22 +33,32 @@ public class WordCount {
 	}
 
 	/**
+	 * 更新词频统计数据，增加1
+	 */
+	public void addWordCountByOne(String word) {
+		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
+			WordCountDao wordCountDao = sqlSession.getMapper(WordCountDao.class);
+			wordCountDao.addWordCountByOne(word);
+		}
+	}
+
+	/**
+	 * 删除某个词频统计结果
+	 */
+	public void deleteWordCount(String word) {
+		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
+			WordCountDao wordCountDao = sqlSession.getMapper(WordCountDao.class);
+			wordCountDao.deleteWordCount(word);
+		}
+	}
+
+	/**
 	 * 插入词频统计结果
 	 */
 	public void insertWordCount(String tablename, String word, int count) {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
 			WordCountDao wordCountDao = sqlSession.getMapper(WordCountDao.class);
 			wordCountDao.insertWordCount(new InsertWordCount(tablename, word, count));
-		}
-	}
-
-	/**
-	 * 更新词频统计结果
-	 */
-	public void updateWordCount(String word, int count) {
-		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
-			WordCountDao wordCountDao = sqlSession.getMapper(WordCountDao.class);
-			wordCountDao.updateWordCount(word, count);
 		}
 	}
 
@@ -86,12 +96,12 @@ public class WordCount {
 	}
 
 	/**
-	 * 删除某个词频统计结果
+	 * 更新词频统计结果
 	 */
-	public void deleteWordCount(String word) {
+	public void updateWordCount(String word, int count) {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
 			WordCountDao wordCountDao = sqlSession.getMapper(WordCountDao.class);
-			wordCountDao.deleteWordCount(word);
+			wordCountDao.updateWordCount(word, count);
 		}
 	}
 
