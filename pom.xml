@@ -16,7 +16,6 @@
 		<module>storm-web</module>
 		<module>storm-analysis</module>
 		<module>storm-core</module>
-		<module>storm-jetty</module>
 	</modules>
 
 	<build>
