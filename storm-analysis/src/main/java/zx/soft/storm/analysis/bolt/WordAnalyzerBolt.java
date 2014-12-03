@@ -21,25 +21,9 @@ public class WordAnalyzerBolt extends BaseRichBolt {
 	//	private static final AnalyzerTool ANALYZER_TOOL = new AnalyzerTool();
 	private AnalyzerTool analyzerTool;
 
-	@SuppressWarnings("rawtypes")
 	@Override
-	public void prepare(final Map stormConf, final TopologyContext context, final OutputCollector collector) {
-		this.collector = collector;
-		// 如果pepare执行频率比较高的化，不能在这里初始化AnalyzerTool
-		analyzerTool = new AnalyzerTool();
-	}
-
-	@Override
-	public void execute(final Tuple input) {
-		String text = input.getString(0);
-		String[] words = analyzerTool.analyzerTextToArr(text);
-		for (String word : words) {
-			word = word.trim();
-			if (!word.isEmpty()) {
-				word = word.toLowerCase(); // 只针对英文字符，中文字符不起作用
-				collector.emit(new Values(word));
-			}
-		}
+	public void cleanup() {
+		analyzerTool.close();
 	}
 
 	@Override
@@ -48,8 +32,27 @@ public class WordAnalyzerBolt extends BaseRichBolt {
 	}
 
 	@Override
-	public void cleanup() {
-		analyzerTool.close();
+	public void execute(final Tuple input) {
+		String text = input.getString(0);
+		String[] words = analyzerTool.analyzerTextToArr(text);
+		for (String word : words) {
+			word = word.trim();
+			if (word.length() < 2 || word.length() > 6) {
+				continue;
+			}
+			if (!word.isEmpty()) {
+				word = word.toLowerCase(); // 只针对英文字符，中文字符不起作用
+				collector.emit(new Values(word));
+			}
+		}
+	}
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	public void prepare(final Map stormConf, final TopologyContext context, final OutputCollector collector) {
+		this.collector = collector;
+		// 如果pepare执行频率比较高的化，不能在这里初始化AnalyzerTool
+		analyzerTool = new AnalyzerTool();
 	}
 
 }
