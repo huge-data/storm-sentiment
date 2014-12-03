@@ -1,44 +1,57 @@
--- MySQL dump 10.13  Distrib 5.1.73, for redhat-linux-gnu (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 4.2.2
+-- http://www.phpmyadmin.net
 --
--- Host: localhost    Database: sentimentword
--- ------------------------------------------------------
--- Server version	5.1.73
+-- Host: localhost
+-- Generation Time: 2014-12-03 09:01:48
+-- 服务器版本： 5.5.37-MariaDB-log
+-- PHP Version: 5.5.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `wordcount`
+-- Database: `sentiment_records`
 --
 
-DROP TABLE IF EXISTS `wordcount`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `wordcount` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `wordcount`
+--
+
+CREATE TABLE IF NOT EXISTS `wordcount` (
+`id` int(10) unsigned NOT NULL COMMENT '自增ID',
   `word` char(50) NOT NULL COMMENT '词语',
   `count` int(10) unsigned NOT NULL COMMENT '频次',
-  `lasttime` int(10) unsigned NOT NULL COMMENT '记录时间',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `word` (`word`)
-) ENGINE=InnoDB AUTO_INCREMENT=716425 DEFAULT CHARSET=utf8 COMMENT='词频统计数据表';
-/*!40101 SET character_set_client = @saved_cs_client */;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+  `lasttime` datetime NOT NULL COMMENT '记录时间'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='词频统计数据表' AUTO_INCREMENT=1 ;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `wordcount`
+--
+ALTER TABLE `wordcount`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `word` (`word`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `wordcount`
+--
+ALTER TABLE `wordcount`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID';
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2014-12-03 15:44:14

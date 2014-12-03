@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import zx.soft.storm.analysis.demo.LoggerAnalysisDemo;
-import zx.soft.storm.dao.demo.LoggerDaoDemo;
 import zx.soft.storm.redis.demo.LoggerRedisDemo;
 
 public class LoggerCoreDemo {
@@ -13,7 +12,6 @@ public class LoggerCoreDemo {
 
 	public static void main(String[] args) {
 		logger.info("Start logging core ...");
-		LoggerDaoDemo.loggerDao();
 		LoggerAnalysisDemo.loggerAnalysis();
 		LoggerRedisDemo.loggerRedis();
 		LoggerCoreDemo.loggerCore();

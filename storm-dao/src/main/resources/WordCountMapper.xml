@@ -7,7 +7,7 @@
 		useGeneratedKeys="true" keyProperty="id" flushCache="true"
 		statementType="PREPARED">
 		INSERT INTO ${tablename} (`word`,`count`,`lasttime`) VALUES
-		(#{word},#{count},UNIX_TIMESTAMP());
+		(#{word},#{count},NOW());
 	</insert>
 	
 </mapper>
