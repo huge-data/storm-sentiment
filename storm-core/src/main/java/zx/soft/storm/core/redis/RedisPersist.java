@@ -6,8 +6,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import zx.soft.storm.redis.cache.dao.Cache;
-import zx.soft.storm.redis.cache.factory.CacheFactory;
+import zx.soft.redis.client.cache.Cache;
+import zx.soft.redis.client.cache.CacheFactory;
 
 /**
  * 持久化到Redis的封装类

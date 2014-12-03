@@ -2,8 +2,8 @@ package zx.soft.storm.analysis.spout;
 
 import java.util.Map;
 
-import zx.soft.storm.redis.cache.dao.Cache;
-import zx.soft.storm.redis.cache.factory.CacheFactory;
+import zx.soft.redis.client.cache.Cache;
+import zx.soft.redis.client.cache.CacheFactory;
 import backtype.storm.spout.SpoutOutputCollector;
 import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.OutputFieldsDeclarer;

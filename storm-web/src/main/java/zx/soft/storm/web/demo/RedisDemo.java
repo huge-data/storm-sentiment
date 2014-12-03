@@ -1,7 +1,7 @@
 package zx.soft.storm.web.demo;
 
-import zx.soft.storm.redis.cache.dao.Cache;
-import zx.soft.storm.redis.cache.factory.CacheFactory;
+import zx.soft.redis.client.cache.Cache;
+import zx.soft.redis.client.cache.CacheFactory;
 
 public class RedisDemo {
 

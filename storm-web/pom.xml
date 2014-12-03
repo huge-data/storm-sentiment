@@ -31,11 +31,6 @@
 		</dependency>
 		<dependency>
 			<groupId>zx.soft</groupId>
-			<artifactId>storm-redis</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>zx.soft</groupId>
 			<artifactId>negative-sentiment</artifactId>
 			<version>1.0.0</version>
 			<exclusions>

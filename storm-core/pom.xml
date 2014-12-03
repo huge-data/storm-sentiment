@@ -19,11 +19,6 @@
 			<artifactId>storm-analysis</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>zx.soft</groupId>
-			<artifactId>storm-redis</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 		<!-- 日志相关 -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
