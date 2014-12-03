@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
 import zx.soft.storm.dao.domain.WordAndCount;
 import zx.soft.storm.web.application.StreamAnslysisApplication;
 import zx.soft.storm.web.domain.ErrorResponse;
-import zx.soft.storm.web.utils.JavaPattern;
-import zx.soft.storm.web.utils.URLCodecUtils;
+import zx.soft.utils.chars.JavaPattern;
+import zx.soft.utils.codec.URLCodecUtils;
 
 /**
  * 流式数据

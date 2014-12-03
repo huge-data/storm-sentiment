@@ -7,7 +7,7 @@ import org.restlet.data.Protocol;
 
 import zx.soft.negative.sentiment.jackson.ReplaceConvert;
 import zx.soft.storm.web.application.StreamAnslysisApplication;
-import zx.soft.storm.web.utils.ConfigUtil;
+import zx.soft.utils.config.ConfigUtil;
 
 /**
  * 流式数据服务，统计词频
