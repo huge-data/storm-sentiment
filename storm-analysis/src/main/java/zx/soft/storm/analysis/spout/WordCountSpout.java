@@ -43,7 +43,7 @@ public class WordCountSpout extends BaseRichSpout {
 			collector.emit(new Values(value));
 		} else {
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

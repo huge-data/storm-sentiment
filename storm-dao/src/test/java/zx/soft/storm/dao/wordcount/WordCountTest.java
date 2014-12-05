@@ -68,7 +68,7 @@ public class WordCountTest {
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	@Test
 	public void testWC5_SelectWordCountByWord_查询词频统计结果0查询频次开前的N个结果() {
